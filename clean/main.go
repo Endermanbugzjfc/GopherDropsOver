@@ -17,7 +17,7 @@ func main() {
 		wg sync.WaitGroup
 	)
 	ec.Store(0)
-	fmt.Println()
+	fmt.Println("")
 	for _, f := range os.Args[1:] {
 		log := []string{f}
 		dir := filepath.Dir(f)
