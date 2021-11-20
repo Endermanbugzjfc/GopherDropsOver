@@ -5,22 +5,29 @@ import (
 	"github.com/Bios-Marcel/wastebasket"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 func main() {
-	for _, f := range os.Args[1:] {
+	for i, f := range os.Args[1:] {
+		if i != 0 {
+			fmt.Println()
+		}
+		fmt.Println(f)
 		lock := filepath.Join(
 			filepath.Dir(f),
 			"clean.gopher-drops-over",
 		)
+		t := time.Now()
 		if _, err := os.Stat(lock); os.IsNotExist(err) {
-			fmt.Println()
+			fmt.Println("File is protected")
 		} else if err := wastebasket.Trash(f); err != nil {
-			e(f, err)
+			fmt.Println(err)
+		} else {
+			fmt.Printf(
+				"Moved to system recycle bin (%s)\n",
+				time.Since(t),
+			)
 		}
 	}
-}
-
-func e(f string, err error) {
-	fmt.Println("Cannot clean \"", f, "\": ", err)
 }
