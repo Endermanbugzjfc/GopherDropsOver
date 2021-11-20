@@ -17,8 +17,9 @@ func main() {
 		wg sync.WaitGroup
 	)
 	ec.Store(0)
+	fmt.Println()
 	for _, f := range os.Args[1:] {
-		log := []string{"\n", f}
+		log := []string{f}
 		dir := filepath.Dir(f)
 		lock := filepath.Join(
 			dir,
@@ -41,7 +42,7 @@ func main() {
 					time.Since(t),
 				))
 			}
-			fmt.Println(strings.Join(log, "\n"))
+			fmt.Println(strings.Join(append(log, ""), "\n"))
 			wg.Done()
 		}()
 	}
