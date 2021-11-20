@@ -38,7 +38,7 @@ func main() {
 				log = append(log, fmt.Sprint(err))
 			} else {
 				log = append(log, fmt.Sprintf(
-					"Moved to system recycle bin (%s)\n",
+					"Moved to system recycle bin (%s)",
 					time.Since(t),
 				))
 			}
