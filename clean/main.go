@@ -15,8 +15,9 @@ func main() {
 			fmt.Println()
 		}
 		fmt.Println(f)
+		dir := filepath.Dir(f)
 		lock := filepath.Join(
-			filepath.Dir(f),
+			dir,
 			"clean.gopher-drops-over",
 		)
 		t := time.Now()
@@ -24,7 +25,7 @@ func main() {
 			fmt.Println("Already cleaned")
 		} else if _, err := os.Stat(lock); os.IsNotExist(err) {
 			fmt.Println("File is protected")
-		} else if err := wastebasket.Trash(f); err != nil {
+		} else if err := wastebasket.Trash(dir); err != nil {
 			ec++
 			fmt.Println(err)
 		} else {
