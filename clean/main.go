@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	ec := 0
 	for i, f := range os.Args[1:] {
 		if i != 0 {
 			fmt.Println()
@@ -22,6 +23,7 @@ func main() {
 		if _, err := os.Stat(lock); os.IsNotExist(err) {
 			fmt.Println("File is protected")
 		} else if err := wastebasket.Trash(f); err != nil {
+			ec++
 			fmt.Println(err)
 		} else {
 			fmt.Printf(
@@ -30,4 +32,5 @@ func main() {
 			)
 		}
 	}
+	fmt.Println("Error count: ", ec)
 }
