@@ -20,7 +20,9 @@ func main() {
 			"clean.gopher-drops-over",
 		)
 		t := time.Now()
-		if _, err := os.Stat(lock); os.IsNotExist(err) {
+		if _, err := os.Stat(f); os.IsNotExist(err) {
+			fmt.Println("Already cleaned")
+		} else if _, err := os.Stat(lock); os.IsNotExist(err) {
 			fmt.Println("File is protected")
 		} else if err := wastebasket.Trash(f); err != nil {
 			ec++
