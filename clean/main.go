@@ -47,5 +47,5 @@ func main() {
 		}()
 	}
 	wg.Wait()
-	fmt.Println("Error count: ", ec)
+	fmt.Println("Error count:", ec.Load())
 }
