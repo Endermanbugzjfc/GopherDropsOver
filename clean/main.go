@@ -41,6 +41,14 @@ func main() {
 					"Moved to system recycle bin (%s)",
 					time.Since(t),
 				))
+				err = nil
+				if err = os.MkdirAll(dir, 0755); err == nil {
+					err = os.WriteFile(lock, []byte{}, 0644)
+				}
+				if err != nil {
+					ec.Store(ec.Load().(int) + 1)
+					log = append(log, fmt.Sprint(err))
+				}
 			}
 			fmt.Println(strings.Join(append(log, ""), "\n"))
 			wg.Done()
