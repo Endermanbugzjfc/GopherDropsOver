@@ -35,7 +35,9 @@
             }, 1000);
             const entry = document.getElementsByTagName('textarea')[0];
             const p = document.getElementsByTagName('p')[0];
-            entry.value = p.innerHTML;
+            entry.value = p.innerHTML
+                .replaceAll('<br>', '\n')
+                .replaceAll('</br>', '\n');
             p.style.visibility = 'hidden';
 
             entry.select();
