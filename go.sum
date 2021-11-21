@@ -1,2 +1,4 @@
 github.com/Bios-Marcel/wastebasket v0.0.0-20190304193457-ba788b19da79 h1:Sl/dpj/KqjXaqEsZhEGlTEIcGqnBW8Oy71UfpjHKUic=
 github.com/Bios-Marcel/wastebasket v0.0.0-20190304193457-ba788b19da79/go.mod h1:C9joOaYXk4dxd98yWfxg8imfNq5Zyyc2CnH8eExIEro=
+github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966 h1:JIAuq3EEf9cgbU6AtGPK4CTG3Zf6CKMNqf0MHTggAUA=
+github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966/go.mod h1:sUM3LWHvSMaG192sy56D9F7CNvL7jUJVXoqM1QKLnog=
