@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .toolbar {
+            display: flex;
+            flex-wrap: nowrap;
+            background-color: DodgerBlue;
+        }
+
+        .toolbar > * {
+            margin-right: 1%;
+            margin-left: 1%;
+        }
+
+        .stretchy {
+            display: flex;
+            width: 100%;
+        }
+    </style>
+    <title>%s Errors</title>
+    <script>
+        function load() {
+
+        }
+
+        function copy() {
+
+        }
+
+        function report() {
+
+        }
+    </script>
+</head>
+<body onload="load()">
+<div class="toolbar">
+    <button onclick="copy">Copy</button>
+    <label class="stretchy">
+        <input class="stretchy">
+    </label>
+    <button onclick="report">Report</button>
+</div>
+<hr>
+%s
+</body>
+</html>
