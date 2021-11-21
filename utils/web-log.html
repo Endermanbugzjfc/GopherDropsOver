@@ -6,17 +6,18 @@
         .toolbar {
             display: flex;
             flex-wrap: nowrap;
-            background-color: DodgerBlue;
         }
 
         .toolbar > * {
             margin-right: 1%;
             margin-left: 1%;
+            width: 100%;
         }
 
-        .stretchy {
-            display: flex;
+        textarea {
             width: 100%;
+            height: 100%;
+            display: none;
         }
     </style>
     <title>%s Errors</title>
@@ -37,12 +38,12 @@
 <body onload="load()">
 <div class="toolbar">
     <button onclick="copy">Copy</button>
-    <label class="stretchy">
-        <input class="stretchy">
-    </label>
     <button onclick="report">Report</button>
 </div>
 <hr>
-%s
+<p>%s</p>
+<label>
+    <textarea></textarea>
+</label>
 </body>
 </html>
