@@ -3,29 +3,30 @@ package main
 import (
 	"fmt"
 	"github.com/Bios-Marcel/wastebasket"
+	"gopher-drops-over/utils"
 	"os"
 	"path/filepath"
 	"strings"
-	"sync"
 	"sync/atomic"
 	"time"
 )
 
 func main() {
 	var (
-		ec atomic.Value
-		wg sync.WaitGroup
+		ec      atomic.Value
+		rawLogs []string
+		logs    = make(chan string)
 	)
 	ec.Store(0)
 	fmt.Println("")
-	for _, f := range os.Args[1:] {
+	items := os.Args[1:]
+	for _, f := range items {
 		log := []string{f}
 		dir := filepath.Dir(f)
 		lock := filepath.Join(
 			dir,
 			"clean.gopher-drops-over",
 		)
-		wg.Add(1)
 		f := f
 		go func() {
 			t := time.Now()
@@ -50,10 +51,17 @@ func main() {
 					log = append(log, fmt.Sprint(err))
 				}
 			}
-			fmt.Println(strings.Join(append(log, ""), "\n"))
-			wg.Done()
+			rawLog := strings.Join(append(log, ""), "\n")
+			fmt.Println(rawLog)
+			logs <- rawLog
 		}()
 	}
-	wg.Wait()
-	fmt.Println("Error count:", ec.Load())
+	for range items {
+		rawLogs = append(rawLogs, <-logs)
+	}
+	vEc := ec.Load().(int)
+	fmt.Println("Error count:", vEc)
+	if vEc > 0 {
+		utils.WebError(vEc, strings.Join(rawLogs, "\n\n"))
+	}
 }
