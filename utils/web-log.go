@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/skratchdot/open-golang/open"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -39,7 +40,7 @@ func WebError(ec int, log string) {
 			string(html),
 			ec,
 			"https://github.com/Endermanbugzjfc/gopher-drops-over/issues",
-			log,
+			strings.ReplaceAll(log, "\n", "<br>"),
 		); err != nil {
 			fmt.Println(err)
 		}
